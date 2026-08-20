@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sergio — Asesor Virtual BlockMaster 🇩🇴</title>
+    <meta name="description" content="Habla con Sergio, el asesor virtual de BlockMaster. Consulta precios, financiamiento, capacidades y asesoría para tu fábrica de blocks en República Dominicana.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* SERGIO CHAT CUSTOM STYLES */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+        }
+
+        .site-header {
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .back-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        /* MAIN CHAT LAYOUT */
+        .chat-main-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-width: 900px;
+            width: 95%;
+            margin: 20px auto;
+            background: var(--bg-panel);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            height: calc(100vh - 120px);
+        }
+
+        /* CHAT HEADER */
+        .chat-header {
+            background: #181818;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .agent-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .agent-avatar {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFC000, #e6ad00);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: #000;
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 12px rgba(255, 192, 0, 0.3);
+        }
+
+        .agent-details h2 {
+            font-size: 1.1rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0;
+        }
+
+        .agent-details p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            background: rgba(0, 230, 118, 0.1);
+            color: var(--green);
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 230, 118, 0.2);
+            font-weight: 600;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 8px var(--green);
+        }
+
+        /* MESSAGES AREA */
+        .messages-container {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            background: #0f0f0f;
+            scroll-behavior: smooth;
+        }
+
+        .msg-row {
+            display: flex;
+            flex-direction: column;
+            max-width: 82%;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .msg-row.sergio {
+            align-self: flex-start;
+        }
+
+        .msg-row.user {
+            align-self: flex-end;
+        }
+
+        .msg-bubble {
+            padding: 14px 18px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+
+        .sergio .msg-bubble {
+            background: var(--bg-light);
+            border-left: 3px solid var(--accent);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .user .msg-bubble {
+            background: var(--accent);
+            color: #000;
+            font-weight: 600;
+            border-bottom-right-radius: 2px;
+        }
+
+        .msg-time {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .sergio .msg-time {
+            align-self: flex-start;
+        }
+
+        .user .msg-time {
+            align-self: flex-end;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* TYPING INDICATOR */
+        .typing-indicator {
+            display: none;
+            align-self: flex-start;
+            background: var(--bg-light);
+            padding: 12px 18px;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent);
+            gap: 5px;
+            align-items: center;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+        .dot:nth-child(1) { animation-delay: -0.32s; }
+        .dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1.0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* SUGGESTED CHIPS */
+        .suggestions-bar {
+            padding: 10px 20px;
+            background: #141414;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .suggestions-bar::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .suggestions-bar::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        .chip-btn {
+            background: #222;
+            color: #ddd;
+            border: 1px solid #333;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .chip-btn:hover {
+            background: var(--accent);
+            color: #000;
+            border-color: var(--accent);
+        }
+
+        /* INPUT AREA */
+        .chat-input-area {
+            padding: 16px 20px;
+            background: #181818;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            background: #0f0f0f;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 14px 18px;
+            color: #fff;
+            font-family: var(--font-main);
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .chat-input-area input:focus {
+            border-color: var(--accent);
+        }
+
+        .send-btn {
+            background: var(--accent);
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            padding: 14px 24px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .send-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .chat-main-container {
+                height: calc(100vh - 90px);
+                width: 100%;
+                margin: 0;
+                border-radius: 0;
+                border: none;
+            }
+
+            .msg-row {
+                max-width: 90%;
+            }
+
+            .chat-input-area {
+                padding: 12px;
+            }
+
+            .send-btn {
+                padding: 14px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="../" class="logo-link">
+                <img src="../BM.LOGO.png" alt="BlockMaster" class="logo" style="height: 38px;">
+            </a>
+            <a href="../" class="back-link">
+                ← Volver a Máquinas
+            </a>
+        </div>
+    </header>
+
+    <!-- CHAT CONTAINER -->
+    <main class="chat-main-container">
+        
+        <!-- HEADER DEL CHAT -->
+        <div class="chat-header">
+            <div class="agent-info">
+                <div class="agent-avatar">S</div>
+                <div class="agent-details">
+                    <h2>Sergio <span style="font-size: 0.85rem; font-weight: normal; color: var(--accent);">— BlockMaster</span></h2>
+                    <p>Asesor de Maquinaria de Producción 🇩🇴</p>
+                </div>
+            </div>
+            <div class="status-badge">
+                <span class="status-dot"></span> En línea
+            </div>
+        </div>
+
+        <!-- VENTANA DE MENSAJES -->
+        <div class="messages-container" id="messages-container">
+            <!-- Mensaje de bienvenida inicial -->
+            <div class="msg-row sergio">
+                <div class="msg-bubble">¡Hola! Soy Sergio, asesor técnico de BlockMaster en RD. ¿Te interesa la máquina para construir un proyecto propio o para montar un negocio de venta de blocks?</div>
+                <div class="msg-time" id="init-time"></div>
+            </div>
+
+            <!-- Typing indicator -->
+            <div class="typing-indicator" id="typing-indicator">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+
+        <!-- CHIPS SUGERIDOS -->
+        <div class="suggestions-bar" id="suggestions-bar">
+            <button class="chip-btn" onclick="sendQuickMessage('Quiero montar un negocio de blocks')">💼 Quiero montar un negocio</button>
+            <button class="chip-btn" onclick="sendQuickMessage('Quiero construir mi propia obra')">🏗️ Para mi construcción</button>
+            <button class="chip-btn" onclick="sendQuickMessage('¿Cuánto cuesta la máquina BM2?')">💰 Precio BM2</button>
+            <button class="chip-btn" onclick="sendQuickMessage('¿Cuánto tarda la entrega?')">🚚 Tiempo de entrega</button>
+            <button class="chip-btn" onclick="sendQuickMessage('¿Tienen financiamiento o depósito?')">💳 Garantía y depósito</button>
+        </div>
+
+        <!-- INPUT BAR -->
+        <form class="chat-input-area" id="chat-form">
+            <input type="text" id="user-input" placeholder="Escribe tu mensaje a Sergio..." autocomplete="off" required>
+            <button type="submit" class="send-btn" id="send-btn">
+                <span>ENVIAR</span>
+            </button>
+        </form>
+
+    </main>
+
+    <script>
+        const WEBHOOK_URL = 'https://pulso-n8n.hyr95s.easypanel.host/webhook/sergio';
+        
+        // Generar o recuperar sessionId único
+        let sessionId = localStorage.getItem('sergio_session_id');
+        if (!sessionId) {
+            sessionId = 'sergio-' + Date.now() + '-' + Math.random().toString(36).substring(2, 9);
+            localStorage.setItem('sergio_session_id', sessionId);
+        }
+
+        const messagesContainer = document.getElementById('messages-container');
+        const typingIndicator = document.getElementById('typing-indicator');
+        const userInput = document.getElementById('user-input');
+        const chatForm = document.getElementById('chat-form');
+        const sendBtn = document.getElementById('send-btn');
+        const initTime = document.getElementById('init-time');
+
+        // Poner la hora en el mensaje inicial
+        if (initTime) {
+            const now = new Date();
+            initTime.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
+
+        function scrollToBottom() {
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function getTimeString() {
+            const now = new Date();
+            return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
+
+        function appendMessage(sender, text) {
+            const msgRow = document.createElement('div');
+            msgRow.className = `msg-row ${sender}`;
+            
+            const msgBubble = document.createElement('div');
+            msgBubble.className = 'msg-bubble';
+
+            // Detectar si el texto incluye enlaces y volverlos clickeables
+            const formattedText = formatLinks(text);
+            msgBubble.innerHTML = formattedText;
+
+            const msgTime = document.createElement('div');
+            msgTime.className = 'msg-time';
+            msgTime.textContent = getTimeString();
+
+            msgRow.appendChild(msgBubble);
+            msgRow.appendChild(msgTime);
+
+            // Insertar antes del typing indicator
+            messagesContainer.insertBefore(msgRow, typingIndicator);
+            scrollToBottom();
+        }
+
+        function formatLinks(text) {
+            // Reemplazar URLs simples o markdown por etiquetas <a href target="_blank">
+            const urlRegex = /(https?:\/\/[^\s]+)/g;
+            return text.replace(urlRegex, function(url) {
+                let cleanUrl = url.replace(/[.,;)]+$/, '');
+                return `<a href="${cleanUrl}" target="_blank" style="color: var(--accent); text-decoration: underline; font-weight: bold;">${cleanUrl}</a>`;
+            });
+        }
+
+        function showTyping() {
+            typingIndicator.style.display = 'flex';
+            scrollToBottom();
+        }
+
+        function hideTyping() {
+            typingIndicator.style.display = 'none';
+        }
+
+        async function sendMessage(messageText) {
+            if (!messageText.trim()) return;
+
+            // Renderizar mensaje del usuario
+            appendMessage('user', messageText);
+            userInput.value = '';
+            sendBtn.disabled = true;
+            showTyping();
+
+            try {
+                const response = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: messageText,
+                        name: '',
+                        email: '',
+                        session_id: sessionId
+                    })
+                });
+
+                const data = await response.json();
+                hideTyping();
+                sendBtn.disabled = false;
+
+                let botReply = "Disculpa, tuve un pequeño inconveniente. Por favor escríbeme de nuevo.";
+                if (data && data.reply) {
+                    botReply = typeof data.reply === 'string' ? data.reply : JSON.stringify(data.reply);
+                } else if (data && data.output) {
+                    botReply = typeof data.output === 'string' ? data.output : JSON.stringify(data.output);
+                }
+
+                appendMessage('sergio', botReply);
+
+            } catch (err) {
+                console.error("Error contactando a Sergio:", err);
+                hideTyping();
+                sendBtn.disabled = false;
+                appendMessage('sergio', "Hubo un error de conexión temporal. Escríbeme directamente por WhatsApp al +1 809-228-2361 (https://wa.me/18092282361?text=Me%20interesa%20la%20BM).");
+            }
+        }
+
+        function sendQuickMessage(text) {
+            sendMessage(text);
+        }
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            sendMessage(userInput.value);
+        });
+
+        // Manejar parámetros de la URL al cargar la página (ej: ?modelo=BM2 o ?objetivo=construccion)
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const modelo = urlParams.get('modelo');
+            const objetivo = urlParams.get('objetivo');
+            const blocks = urlParams.get('blocks');
+
+            if (modelo) {
+                setTimeout(() => {
+                    sendMessage(`Hola Sergio, me interesa información sobre el modelo ${modelo}`);
+                }, 600);
+            } else if (objetivo === 'construccion') {
+                setTimeout(() => {
+                    sendMessage(`Hola Sergio, estoy calculando ${blocks || 5000} blocks para mi obra y quiero saber qué máquina me conviene.`);
+                }, 600);
+            }
+        });
+    </script>
+</body>
+</html>

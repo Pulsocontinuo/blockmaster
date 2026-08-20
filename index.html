@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlockMaster - Fabrica Tus Propios Blocks</title>
+    <meta name="description" content="Máquinas para fabricar blocks hechas en República Dominicana. Empieza tu propio negocio de blocks o ahorra en tu construcción.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="#" class="logo-link">
+                <img src="BM.LOGO.png" alt="BlockMaster" class="logo">
+            </a>
+            <nav class="main-nav">
+                <a href="#productos">Máquinas</a>
+                <a href="#calculadora">Calculadora</a>
+                <a href="#como-comprar">Cómo funciona</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+            <a href="sergio/" class="btn btn-header">HABLA CON SERGIO</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <h1>FABRICA TUS PROPIOS BLOCKS.</h1>
+                    <p class="subheadline">Construye gastando menos o convierte tu máquina en un negocio.</p>
+                    <p class="description">Máquinas para producir blocks tradicionales de 6” y 8”, fabricadas en República Dominicana.</p>
+                    
+                    <div class="hero-price">
+                        <span class="label">DESDE</span>
+                        <span class="amount">RD$100,000</span>
+                    </div>
+
+                    <div class="trust-badges">
+                        <div class="badge">🇩🇴 Fabricadas en RD</div>
+                        <div class="badge">🔧 Garantía de fábrica</div>
+                        <div class="badge">🚚 Entrega nacional</div>
+                        <div class="badge">🎓 Entrenamiento incl.</div>
+                        <div class="badge">🔌 Eléctricas 110V</div>
+                    </div>
+
+                    <div class="hero-ctas">
+                        <a href="sergio/" class="btn btn-primary btn-large">HABLA CON SERGIO</a>
+                        <a href="#calculadora" class="btn btn-outline btn-large">CALCULA SI TE CONVIENE</a>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="video-frame">
+                        <div class="video-label">MÁQUINA EN ACCIÓN</div>
+                        <video autoplay muted loop playsinline class="vertical-video">
+                            <source src="BM-02-VIDEO-1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DOS TIPOS DE CLIENTE -->
+        <section class="client-types">
+            <div class="container">
+                <h2 class="section-title text-center">¿QUÉ QUIERES HACER?</h2>
+                <div class="cards-grid">
+                    
+                    <!-- CARD A -->
+                    <div class="client-card">
+                        <div class="card-eyebrow">PARA CONSTRUCTORES</div>
+                        <h3>DEJA DE COMPRAR TODOS TUS BLOCKS.</h3>
+                        <p>Si eres maestro constructor, contratista o estás construyendo tu propia casa, puedes evaluar producir los blocks directamente en la obra.</p>
+                        
+                        <div class="card-example">
+                            <p><strong>Ejemplo:</strong></p>
+                            <p>5,000 blocks comprados a RD$50 = <span class="highlight-red">RD$250,000</span></p>
+                            <p class="big-question">¿Y si pudieras fabricar parte o todos esos blocks tú mismo?</p>
+                        </div>
+                        
+                        <button class="btn btn-primary btn-block" onclick="scrollToCalc('construir')">CALCULAR MI AHORRO</button>
+                    </div>
+
+                    <!-- CARD B -->
+                    <div class="client-card dark">
+                        <div class="card-eyebrow accent-text">PARA EMPRENDEDORES</div>
+                        <h3>MONTA TU PROPIA PRODUCCIÓN DE BLOCKS.</h3>
+                        <p>Produce blocks tradicionales de 6” y 8” para vender a constructores, ferreterías y particulares.</p>
+                        
+                        <div class="card-example alt">
+                            <div class="data-row">
+                                <span>Costo estimado (arena + cemento):</span>
+                                <strong>RD$13 / block</strong>
+                            </div>
+                            <div class="data-row">
+                                <span>Precio de venta sugerido:</span>
+                                <strong>RD$50 / block</strong>
+                            </div>
+                            <div class="margin-highlight">
+                                <h4>RD$37</h4>
+                                <p>de diferencia bruta por block (antes de mano de obra y otros gastos operativos).</p>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary btn-block" onclick="scrollToCalc('negocio')">CALCULAR MI NEGOCIO</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CALCULADORA -->
+        <section class="calculator-section" id="calculadora">
+            <div class="container">
+                <h2 class="section-title text-center">HAZ LOS NÚMEROS ANTES DE DECIDIR.</h2>
+                
+                <div class="calc-container">
+                    <div class="calc-tabs">
+                        <button class="calc-tab active" data-target="calc-construir">QUIERO CONSTRUIR</button>
+                        <button class="calc-tab" data-target="calc-negocio">QUIERO VENDER BLOCKS</button>
+                    </div>
+
+                    <!-- MODO CONSTRUIR -->
+                    <div class="calc-panel active" id="calc-construir">
+                        <div class="calc-layout">
+                            <div class="calc-inputs">
+                                <div class="form-group">
+                                    <label>¿Cuántos blocks necesitas?</label>
+                                    <input type="number" id="c-blocks" value="5000">
+                                </div>
+                                <div class="form-group">
+                                    <label>Precio de compra por block (RD$)</label>
+                                    <input type="number" id="c-precio-compra" value="50">
+                                </div>
+                                <div class="form-group">
+                                    <label>Costo estimado de materiales (RD$)</label>
+                                    <input type="number" id="c-costo-mat" value="13">
+                                </div>
+                                <div class="form-group">
+                                    <label>Máquina de interés</label>
+                                    <select id="c-maquina">
+                                        <option value="100000">BM2 — RD$100,000</option>
+                                        <option value="150000">BM3 — RD$150,000</option>
+                                        <option value="180000">BM4 — RD$180,000</option>
+                                        <option value="280000">BM5 — RD$280,000</option>
+                                        <option value="350000">BM6 — RD$350,000</option>
+                                        <option value="450000">BM7 — RD$450,000</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="calc-results">
+                                <div class="result-row">
+                                    <span>COSTO DE COMPRARLOS</span>
+                                    <span class="value txt-red" id="c-res-comprar">RD$0</span>
+                                </div>
+                                <div class="result-row">
+                                    <span>MATERIALES PARA FABRICARLOS</span>
+                                    <span class="value txt-green" id="c-res-mat">RD$0</span>
+                                </div>
+                                <div class="result-row">
+                                    <span>PRECIO DE MÁQUINA</span>
+                                    <span class="value" id="c-res-maq">RD$0</span>
+                                </div>
+                                <div class="result-divider"></div>
+                                <div class="result-row highlight">
+                                    <span>DIFERENCIA PRELIMINAR</span>
+                                    <span class="value txt-accent" id="c-res-diff">RD$0</span>
+                                </div>
+                                
+                                <p class="calc-warning">
+                                    ⚠️ Este cálculo no incluye mano de obra, transporte, agua, pérdidas, curado, almacenamiento ni otros gastos operativos.
+                                </p>
+                                
+                                <p class="calc-cta-text">¿Quieres saber qué máquina te conviene?</p>
+                                <a href="#" id="c-cta-btn" class="btn btn-primary btn-block">HABLA CON SERGIO</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MODO NEGOCIO -->
+                    <div class="calc-panel" id="calc-negocio">
+                        <div class="calc-layout">
+                            <div class="calc-inputs">
+                                <div class="form-group">
+                                    <label>Cantidad de blocks a vender al mes</label>
+                                    <input type="number" id="n-blocks" value="5000">
+                                </div>
+                                <div class="form-group">
+                                    <label>Precio de venta por block (RD$)</label>
+                                    <input type="number" id="n-precio-venta" value="50">
+                                </div>
+                                <div class="form-group">
+                                    <label>Costo estimado de materiales (RD$)</label>
+                                    <input type="number" id="n-costo-mat" value="13">
+                                </div>
+                            </div>
+                            <div class="calc-results">
+                                <div class="result-row">
+                                    <span>VENTAS POTENCIALES</span>
+                                    <span class="value txt-green" id="n-res-ventas">RD$0</span>
+                                </div>
+                                <div class="result-row">
+                                    <span>COSTO DE MATERIALES</span>
+                                    <span class="value txt-red" id="n-res-mat">RD$0</span>
+                                </div>
+                                <div class="result-divider"></div>
+                                <div class="result-row highlight">
+                                    <span>MARGEN BRUTO</span>
+                                    <span class="value txt-accent" id="n-res-margen">RD$0</span>
+                                </div>
+                                
+                                <p class="calc-warning">
+                                    ⚠️ El margen bruto es ANTES de mano de obra, mantenimiento, depreciación de máquina, transporte, luz y gastos operativos. No es ganancia neta.
+                                </p>
+                                
+                                <p class="calc-cta-text">¿Quieres saber qué máquina te conviene?</p>
+                                <a href="#" id="n-cta-btn" class="btn btn-primary btn-block">HABLA CON SERGIO</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCTOS BM2 y BM5 -->
+        <section class="products-section" id="productos">
+            <div class="container">
+                <h2 class="section-title text-center">ELIGE TU NIVEL DE PRODUCCIÓN.</h2>
+                
+                <div class="product-grid">
+                    <div class="machine-card">
+                        <div class="mc-model">BM2</div>
+                        <div class="mc-desc">Produce 2 blocks por ciclo.</div>
+                        <div class="mc-price">RD$100,000</div>
+                        <a href="sergio/?modelo=BM2" class="btn btn-outline btn-block mc-btn">ME INTERESA</a>
+                    </div>
+                    <div class="machine-card">
+                        <div class="mc-model">BM3</div>
+                        <div class="mc-desc">Produce 3 blocks por ciclo.</div>
+                        <div class="mc-price">RD$150,000</div>
+                        <a href="sergio/?modelo=BM3" class="btn btn-outline btn-block mc-btn">ME INTERESA</a>
+                    </div>
+                    <div class="machine-card">
+                        <div class="mc-model">BM4</div>
+                        <div class="mc-desc">Produce 4 blocks por ciclo.</div>
+                        <div class="mc-price">RD$180,000</div>
+                        <a href="sergio/?modelo=BM4" class="btn btn-outline btn-block mc-btn">ME INTERESA</a>
+                    </div>
+                    <div class="machine-card">
+                        <div class="mc-model">BM5</div>
+                        <div class="mc-desc">Produce 5 blocks por ciclo.</div>
+                        <div class="mc-price">RD$280,000</div>
+                        <a href="sergio/?modelo=BM5" class="btn btn-outline btn-block mc-btn">ME INTERESA</a>
+                    </div>
+                    <div class="machine-card">
+                        <div class="mc-model">BM6</div>
+                        <div class="mc-desc">Produce 6 blocks por ciclo.</div>
+                        <div class="mc-price">RD$350,000</div>
+                        <a href="sergio/?modelo=BM6" class="btn btn-outline btn-block mc-btn">ME INTERESA</a>
+                    </div>
+                    <div class="machine-card">
+                        <div class="mc-model">BM7</div>
+                        <div class="mc-desc">Produce 7 blocks por ciclo.</div>
+                        <div class="mc-price">RD$450,000</div>
+                        <a href="sergio/?modelo=BM7" class="btn btn-outline btn-block mc-btn">ME INTERESA</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRUEBA VISUAL -->
+        <section class="visual-proof">
+            <div class="container">
+                <h2 class="section-title text-center">NO TE LO CONTAMOS.<br>MÍRALA TRABAJAR.</h2>
+                
+                <div class="proof-blocks">
+                    <!-- Block 1 -->
+                    <div class="proof-block">
+                        <div class="proof-video">
+                            <video src="Blockmaster-linea de produccion.mp4" controls preload="none" poster="BM-05-LINEA de produccion.jpeg"></video>
+                        </div>
+                        <div class="proof-text">
+                            <h3>LÍNEA DE PRODUCCIÓN</h3>
+                            <p>Desmolde limpio y rápido. Así sale la mezcla directamente a la pista de curado.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Block 2 -->
+                    <div class="proof-block alt">
+                        <div class="proof-text">
+                            <h3>EXPERIENCIA FABRICANDO DIFERENTES CAPACIDADES</h3>
+                            <p>Más allá de nuestros modelos en catálogo, diseñamos maquinaria pesada adaptada a volúmenes masivos de producción (modelos de 6 y 7 blocks por ciclo).</p>
+                        </div>
+                        <div class="proof-video">
+                            <video src="6 BLOCKS.mp4" controls preload="none" poster="blockmaster.jpeg"></video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCCIÓN REAL GALERÍA EDITORIAL -->
+        <section class="editorial-gallery">
+            <div class="container">
+                <h2 class="section-title">DE LA MEZCLA AL BLOCK TERMINADO.</h2>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-main">
+                        <img src="LINEA DE BLOCKS.jpeg" alt="Línea de producción extensa" class="lightbox-img">
+                        <div class="caption">Producción real en pista.</div>
+                    </div>
+                    <div class="gallery-side">
+                        <div class="gallery-item">
+                            <img src="BM-05-LINEA de produccion.jpeg" alt="Blocks recién desmoldados" class="lightbox-img">
+                            <div class="caption">Blocks recién fabricados.</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="LINEA DE BLOCKS 2.jpeg" alt="Línea de blocks BlockMaster" class="lightbox-img">
+                            <div class="caption">Maquinaria trabajando en RD.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONFIANZA / STATS -->
+        <section class="trust-stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <span class="stat-num">5+</span>
+                        <span class="stat-text">AÑOS FABRICANDO</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-num">300+</span>
+                        <span class="stat-text">MÁQUINAS VENDIDAS EN RD</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-num">CIENTOS</span>
+                        <span class="stat-text">VENDIDAS ENTRE RD Y HAITÍ</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-num">6" Y 8"</span>
+                        <span class="stat-text">BLOCK TRADICIONAL</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-num">10 DÍAS</span>
+                        <span class="stat-text">FABRICACIÓN APROX.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FABRICADAS AQUI -->
+        <section class="made-here">
+            <div class="container made-here-grid">
+                <div class="made-text">
+                    <h2 class="section-title">HECHAS AQUÍ.<br>RESPALDADAS AQUÍ.</h2>
+                    <p>BlockMaster trabaja con maquinaria fabricada localmente en República Dominicana. Esto nos permite ofrecer mantenimiento, reparación y disponibilidad de piezas sin depender exclusivamente de importaciones de repuestos.</p>
+                    <ul class="check-list">
+                        <li>Garantía de fábrica.</li>
+                        <li>Entrenamiento para su uso.</li>
+                        <li>Funciona con electricidad 110V.</li>
+                        <li>Mantenimiento preventivo/correctivo.</li>
+                        <li>Repuestos siempre disponibles.</li>
+                        <li>Entrega a nivel nacional.</li>
+                    </ul>
+                </div>
+                <div class="made-visuals">
+                    <img src="BM-07.jpeg" alt="Máquina histórica de alta capacidad" class="lightbox-img">
+                    <img src="BM-03.jpeg" alt="Desarrollo de maquinaria" class="lightbox-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- CÓMO COMPRAR -->
+        <section class="how-to-buy" id="como-comprar">
+            <div class="container">
+                <h2 class="section-title text-center">DE TU INTERÉS A TU MÁQUINA EN 5 PASOS.</h2>
+                
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-num">01</div>
+                        <h4>Habla con Sergio.</h4>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">02</div>
+                        <h4>Selecciona tu máquina (BM2 a BM7).</h4>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">03</div>
+                        <h4>Puedes coordinar una visita y verla trabajando.</h4>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">04</div>
+                        <h4>Fabricación aproximada: 10 días.</h4>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">05</div>
+                        <h4>Entrega en cualquier provincia de RD.</h4>
+                    </div>
+                </div>
+
+                <div class="conditions-box">
+                    <div class="cond-item">
+                        <strong>BM2 a BM7:</strong> Diferentes capacidades para ajustarse a cada proyecto.
+                    </div>
+                    <div class="cond-item">
+                        Consulta con Sergio los términos de compra y avance.
+                    </div>
+                    <div class="cond-item text-muted">
+                        * Costo de transporte depende del destino.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq-section" id="faq">
+            <div class="container">
+                <h2 class="section-title text-center">PREGUNTAS FRECUENTES</h2>
+                
+                <div class="accordion">
+                    <!-- Q1 -->
+                    <div class="acc-item">
+                        <button class="acc-header">¿Qué tipos de blocks fabrica?</button>
+                        <div class="acc-body">
+                            <p>Blocks tradicionales de concreto de 6 y 8 pulgadas usados en República Dominicana.</p>
+                        </div>
+                    </div>
+                    <!-- Q2 -->
+                    <div class="acc-item">
+                        <button class="acc-header">¿Cuánto cuesta una máquina?</button>
+                        <div class="acc-body">
+                            <p>BM2: RD$100,000 | BM3: RD$150,000 | BM4: RD$180,000<br>BM5: RD$280,000 | BM6: RD$350,000 | BM7: RD$450,000.</p>
+                        </div>
+                    </div>
+                    <!-- Q3 -->
+                    <div class="acc-item">
+                        <button class="acc-header">¿Cuánto tarda en fabricarse?</button>
+                        <div class="acc-body">
+                            <p>Aproximadamente 10 días.</p>
+                        </div>
+                    </div>
+                    <!-- Q4 -->
+                    <div class="acc-item">
+                        <button class="acc-header">¿Cuánto cuesta producir un block?</button>
+                        <div class="acc-body">
+                            <p>El costo estimado actual de arena y cemento es aproximadamente RD$13 por block. No incluye mano de obra ni otros gastos operativos.</p>
+                        </div>
+                    </div>
+                    <!-- Q5 -->
+                    <div class="acc-item">
+                        <button class="acc-header">¿A cuánto puedo vender un block?</button>
+                        <div class="acc-body">
+                            <p>Estamos utilizando aproximadamente RD$50 como referencia, pero depende del mercado, ubicación y tipo de block.</p>
+                        </div>
+                    </div>
+                    <!-- Q6 -->
+                    <div class="acc-item">
+                        <button class="acc-header">¿Cuántos blocks produce la BM2?</button>
+                        <div class="acc-body">
+                            <p>Aproximadamente 100 blocks en 3.5–4 horas bajo condiciones normales de trabajo, según experiencia del fabricante.</p>
+                        </div>
+                    </div>
+                    <!-- Q7 -->
+                    <div class="acc-item">
+                        <button class="acc-header">¿Cuánto produce la BM5?</button>
+                        <div class="acc-body">
+                            <p>Produce 5 blocks por ciclo. (No publicamos una cifra diaria definitiva hasta que sea validada según las condiciones particulares de la obra).</p>
+                        </div>
+                    </div>
+                    <!-- Q8 -->
+                    <div class="acc-item">
+                        <button class="acc-header">¿Sirve para constructores?</button>
+                        <div class="acc-body">
+                            <p>Sí. Puede ser especialmente útil para maestros, pequeños contratistas y proyectos donde exista consumo recurrente de blocks.</p>
+                        </div>
+                    </div>
+                    <!-- Q9 -->
+                    <div class="acc-item">
+                        <button class="acc-header">¿Sirve para construir mi propia casa?</button>
+                        <div class="acc-body">
+                            <p>Puede ser una opción si el volumen de blocks requerido justifica la inversión. Usa la calculadora en la web para estimarlo.</p>
+                        </div>
+                    </div>
+                    <!-- Q10 -->
+                    <div class="acc-item">
+                        <button class="acc-header">¿Puedo montar un negocio?</button>
+                        <div class="acc-body">
+                            <p>Sí. Las máquinas pueden utilizarse para producir blocks para venta, pero la rentabilidad depende de producción, costos, mano de obra, transporte y precio de venta.</p>
+                        </div>
+                    </div>
+                    <!-- Q11 -->
+                    <div class="acc-item">
+                        <button class="acc-header">¿Tiene garantía?</button>
+                        <div class="acc-body">
+                            <p>Sí. Hay garantía, mantenimiento y disponibilidad de piezas directamente en RD.</p>
+                        </div>
+                    </div>
+                    <!-- Q12 -->
+                    <div class="acc-item">
+                        <button class="acc-header">¿Puedo verla antes de comprar?</button>
+                        <div class="acc-body">
+                            <p>Sí. Se puede coordinar una visita para conocer al fabricante y ver la máquina trabajando.</p>
+                        </div>
+                    </div>
+                    <!-- Q13 -->
+                    <div class="acc-item">
+                        <button class="acc-header">¿Tengo que dar dinero por adelantado?</button>
+                        <div class="acc-body">
+                            <p>BM2: no requiere depósito anticipado.<br>BM5: requiere reserva de RD$50,000.</p>
+                        </div>
+                    </div>
+                    <!-- Q14 -->
+                    <div class="acc-item">
+                        <button class="acc-header">¿Entregan fuera de Sosúa?</button>
+                        <div class="acc-body">
+                            <p>Sí. Se puede coordinar transporte a cualquier provincia de República Dominicana.</p>
+                        </div>
+                    </div>
+                    <!-- Q15 -->
+                    <div class="acc-item">
+                        <button class="acc-header">¿Tengo que saber cómo usarla?</button>
+                        <div class="acc-body">
+                            <p>No te preocupes. Todas las máquinas incluyen entrenamiento para su correcto uso.</p>
+                        </div>
+                    </div>
+                    <!-- Q16 -->
+                    <div class="acc-item">
+                        <button class="acc-header">¿Qué tipo de corriente utiliza?</button>
+                        <div class="acc-body">
+                            <p>Funciona con electricidad regular de 110V, ideal para cualquier instalación.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section class="final-cta">
+            <div class="container text-center">
+                <h2>¿VAS A COMPRAR BLOCKS<br>O VAS A PRODUCIRLOS?</h2>
+                <p>Haz los números primero.</p>
+                <a href="sergio/" class="btn btn-primary btn-huge">HABLA CON SERGIO</a>
+                <p class="cta-micro">Asesor virtual BlockMaster disponible 24/7.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <img src="BM.LOGO.png" alt="BlockMaster Logo" class="footer-logo">
+            <p>&copy; 2026 BlockMaster. Maquinaria fabricada en RD.</p>
+        </div>
+    </footer>
+
+    <!-- MOBILE STICKY CTA -->
+    <div class="mobile-sticky-cta">
+        <a href="sergio/" class="btn btn-primary btn-block">HABLA CON SERGIO</a>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
